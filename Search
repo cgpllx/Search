@@ -1,0 +1,89 @@
+
+
+Creating a Search Interface
+
+When you're ready to add search functionality to your application, Android helps you implement the user interface with
+either a search dialog that appears at the top of the activity window or a search widget layout that you can insert in
+your layout. Both the search dialog and the widget can deliver the user's search query to a specific activity in your
+application. This way, the user can initiate a search from any activity where the search dialog or widget is avaiable,
+and  the system starts the appropriate activity to perform the search and present results.
+
+Other features available for the search dialog and widget include:
+
+    Voice search
+    Search suggestions based on recent queries
+    Search suggestions that match actual results in your application data
+
+This guide shows you how to set up your application to provide a search interface that's assisted by the Android system
+to deliver search queries, using either the search dialog or the search widget.
+
+
+The Basics
+
+Before you begin, you should decide whether you'll implement your search interface using the search dialog or the search
+widget. Both provide the same search features, but in slightly different ways:
+
+    The search dialog is a UI component that's controlled by the Android system. When activated by the user, the search
+dialog appears at the top of the activity, as shown in figure 1. The Android system controls all events in the search
+dialog. When the user submits a query, the system delivers the query to the activity that you specify to handle searches.
+The dialog can also provide search suggestions while the user types.
+
+    The search widget is an instance of SearchView that you can place anywhere in your layout. By default, the search
+widget behaves like a standard EditText widget and doesn't do anything, but you can configure it so that the Android
+system handles all input events, delivers queries to the appropriate activity, and provides search suggestions (just like
+the search dialog). However, the search widget is available only in Android 3.0 (API LEVEL 11) and higher.
+
+    Note: If you want, you can handle all user input into the search widget yourself, using various callback methods and
+listeners. This document, however, focuses on how to integrate the search widget with the system for an assisted search
+implementation. If you want to handle all user input yourself, read the reference documentation for SearchView and its
+nested interfaces.
+
+When the user executes a search from the search dialog or a search widget, the system creates an Intent and stores the
+user query in it. The system then starts the activity that you've declared to handle searches (the "searchable activity")
+and delivers it the intent. To set up your application for this kind of assisted search, you need the following:
+
+    A searchable configuration:
+    A XML file that configures some settings for the search dialog or widget. It includes settings for features such as
+voice search, search suggestion, and hint text for the search box.
+
+    A searchable activity:
+    The Activity that receives the search query, searches your data, and displays the search results.
+
+    A search interface, provided by either:
+        The search dialog
+        By default, the search dialog is hidden, but appears at the top of the screen when you call onSearchRequested()
+    (when the user presses your Search button).
+
+    Or, a SearchView widget
+        Using the search widget allows you to put the search box anywhere in your activity. Instead of putting it in your
+    activity layout, you should usually use SearchView as an action view in the Action Bar.
+
+The rest of this document shows you how to create the searchable configuration, searchable activity, and implement a search
+interface with either the search dialog or search widget.
+
+
+Creating a Searchable Configuration
+
+The first thing you need is an XML file called the searchable configuration. It configures certain UI aspects of the
+search dialog or widget and defines how features such as suggestions and voice search behave. This file is traditionally
+named searchable.xml and must be saved in the res/xml project directory.
+
+    Note: The system uses this file to instantiate a SearchableInfo object, but you cannot create this object yourself
+    at runtime -- you must declare the searchable configuration in XML.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

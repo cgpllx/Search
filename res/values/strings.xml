@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">搜索</string>
+    <string name="search_hint">请输入关键字</string>
+    <string name="search_button_text">搜索</string>
+    <string name="search_result">搜索结果</string>
+</resources>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="com.example.search"
+          android:versionCode="1"
+          android:versionName="1.0">
+    <uses-sdk android:minSdkVersion="19" />
+    <application
+            android:icon="@drawable/ic_launcher">
+        <activity
+                android:label="@string/app_name"
+                android:name="MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+            <meta-data
+                    android:name="android.app.default_searchable"
+                    android:value=".SearchResultActivity" />
+        </activity>
+
+        <activity
+                android:name=".SearchResultActivity"
+                android:label="@string/search_result">
+            <!--The <intent-filter> does not need a <category> with the DEFAULT value (which you usually see in <activity> elements),
+            because the system delivers the ACTION_SEARCH intent explicitly to your searchable activity, using its component name.-->
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+
+            <!--android:name 必须为 android.app.searchable-->
+            <meta-data
+                    android:name="android.app.searchable"
+                    android:resource="@xml/search" />
+
+        </activity>
+
+        <provider
+                android:authorities="com.example.search.SuggestionProvider"
+                android:name=".SuggestionProvider" />
+    </application>
+
+
+</manifest>
